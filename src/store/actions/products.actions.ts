@@ -12,7 +12,7 @@ const getProductById = async (id: string): Promise<Product> => {
 };
 // #endregion
 
-export const getProductsThunk = () => {
+export const asyncGetProductsThunk = () => {
   return async (dispatch) => {
     try {
       dispatch(productsActions.setProductsLoading(true));
@@ -26,7 +26,7 @@ export const getProductsThunk = () => {
   };
 };
 
-export const getProducByIdThunk = (id: string) => {
+export const asyncGetProducByIdThunk = (id: string) => {
   return async (dispatch) => {
     try {
       dispatch(productsActions.setPreviewLoading(true));
