@@ -4,7 +4,7 @@ export const HomePage: React.FC = () => {
     return (
         <div>
             <h1>Welcome to the Homepage</h1>
-            {/* Add your content here */}
+        
             <section>
                 <h2>About Us</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Sed non mauris vitae erat consequat auctor eu in elit.</p>

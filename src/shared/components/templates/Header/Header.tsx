@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
     return (
@@ -9,10 +10,15 @@ const Header: React.FC = () => {
                 </div>
                 <nav>
                     <ul className="flex space-x-4">
-                        <li><a href="/" className="hover:text-gray-300">Home</a></li>
-                        <li><a href="/products" className="hover:text-gray-300">Products</a></li>
-                        <li><a href="/about" className="hover:text-gray-300">About</a></li>
-                        {/* Add more navigation links as needed */}
+                        <li>
+                            <Link to={'/'} className="hover:text-gray-300">Home</Link>
+                        </li>
+                        <li>
+                            <Link to={'/products'} className="hover:text-gray-300">Products</Link>
+                        </li>
+                        <li>
+                            <Link to={'/about'} className="hover:text-gray-300">About</Link>
+                        </li>
                     </ul>
                 </nav>
                 <div className='header__settings flex'>

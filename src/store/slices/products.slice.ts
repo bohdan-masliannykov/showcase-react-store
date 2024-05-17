@@ -13,6 +13,11 @@ const initialState: ProductsState = {
     loading: false,
     error: null,
   },
+  categories: {
+    data: [],
+    loading: false,
+    error: null,
+  },
 };
 
 export const productsSlice = createSlice({
@@ -44,6 +49,20 @@ export const productsSlice = createSlice({
     },
     setPreviewError: (state, action: PayloadAction<Error | null>) => {
       state.preview.error = action.payload;
+    },
+    
+    setCategories: (state, action: PayloadAction<string[]>) => {
+      state.categories = {
+        data: action.payload,
+        loading: false,
+        error: null,
+      };
+    },
+    setCategoriesLoading: (state, action: PayloadAction<boolean>) => {
+      state.categories.loading = action.payload;
+    },
+    setCategoriesError: (state, action: PayloadAction<Error | null>) => {
+      state.categories.error = action.payload;
     },
   },
 });

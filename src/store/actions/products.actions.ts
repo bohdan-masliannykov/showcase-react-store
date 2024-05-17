@@ -10,6 +10,12 @@ const getProducts = async (): Promise<Product[]> => {
 const getProductById = async (id: string): Promise<Product> => {
   return fetchData<Product>(`${import.meta.env.VITE_API_URL}/products/${id}`);
 };
+
+const getProductsCategories = async (): Promise<string[]> => {
+  return fetchData<string[]>(
+    `${import.meta.env.VITE_API_URL}/products/categories`
+  );
+};
 // #endregion
 
 export const asyncGetProductsThunk = () => {
@@ -19,6 +25,20 @@ export const asyncGetProductsThunk = () => {
       const response = await getProducts();
       dispatch(productsActions.setProducts(response));
       dispatch(productsActions.setProductsLoading(false));
+    } catch (error: Error) {
+      console.log('Error: ', error.message);
+      //TODO show common UI error
+    }
+  };
+};
+
+export const asyncGetProductsCategoriesThunk = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(productsActions.setCategoriesLoading(true));
+      const response = await getProductsCategories();
+      dispatch(productsActions.setCategories(response));
+      dispatch(productsActions.setCategoriesLoading(false));
     } catch (error: Error) {
       console.log('Error: ', error.message);
       //TODO show common UI error

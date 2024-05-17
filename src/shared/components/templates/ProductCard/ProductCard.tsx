@@ -21,11 +21,11 @@ const ProductCard: React.FC<ProductEntityProps> = ({ product }) => {
                 <img className={styles.product__image} src={product.image} alt={product.title} />
             </CardHeader>
             <CardContent>
-                <CardTitle>
-                    <h3 className={`${styles.product__title}`}>{product.title}</h3>
+                <CardTitle className={`${styles.product__title}`}>
+                    {product.title}
                 </CardTitle>
-                <CardDescription>
-                    <p title={product.description} className={`${styles.product__description} mt-2`}>{product.description}</p>
+                <CardDescription className={`${styles.product__description} mt-2`}>
+                    {product.description}
                 </CardDescription>
             </CardContent>
             <CardFooter>
