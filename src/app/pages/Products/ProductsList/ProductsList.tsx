@@ -5,6 +5,7 @@ import { Product } from '@/shared/types/product.type';
 import { ProductsState } from '@/shared/types/products-state.type';
 import { RootState } from '@/store';
 import { asyncGetProductsCategoriesThunk, asyncGetProductsThunk } from '@/store/actions/products.actions';
+import { productsActions } from '@/store/slices/products.slice';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -22,6 +23,10 @@ const ProductsList: React.FC = () => {
 
     useEffect(() => {
         dispatch(asyncGetProductsCategoriesThunk());
+        return () => {
+            // clean store to refetch only fresh data
+            dispatch(productsActions.resetProducts());
+        }
     }, []);
 
     useEffect(() => {

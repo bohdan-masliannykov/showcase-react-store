@@ -27,7 +27,14 @@ const initialState: ProductsState = {
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    resetProducts: (state) => {
+      state.products = { data: [], loading: false, error: null };
+    },
+    resetPreview: (state) => {
+      state.preview = { data: null, loading: false, error: null };
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(asyncGetProductsThunk.pending, (state) => {

@@ -3,6 +3,7 @@ import { Product } from '@/shared/types/product.type';
 import { ProductsState } from '@/shared/types/products-state.type';
 import { RootState } from '@/store';
 import { asyncGetProducByIdThunk } from '@/store/actions/products.actions';
+import { productsActions } from '@/store/slices/products.slice';
 import { formatCurrency } from '@/utils/currency.util';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -39,15 +40,16 @@ const ProductView: React.FC<{ product: Product }> = ({ product }) => {
                 <div className=" mb-2.5">
                     <h1 className='text-4xl font-extrabold dark:text-white mb-4'>{product.title}</h1>
                 </div>
-
+                <span class="capitalize inline-flex items-center justify-center px-2 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
+                    {product!.category}
+                </span>
                 <div className=" mb-2.5">
                     <p className='mb-4 text-lg font-normal text-gray-500 dark:text-gray-400'>{product.description}</p>
                 </div>
-
                 <div className="max-w-[360px]">
-
-                    <p>{formatCurrency(product.price)}</p>
-                    <p>{product.category}</p>
+                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                        {formatCurrency(product!.price)}
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,6 +66,10 @@ const ProductPreview: React.FC = () => {
 
     useEffect(() => {
         dispatch(asyncGetProducByIdThunk(id));
+        return () => {
+            // clean store preview to refetch only fresh data
+            dispatch(productsActions.resetPreview());
+        }
     }, []);
 
     return (
