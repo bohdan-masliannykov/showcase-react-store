@@ -6,7 +6,9 @@ export const ClientLayout: React.FC = () => {
     return (
         <>
             <Header />
-            <Outlet />
+            <div style={{ minHeight: 'calc(100vh - 250px)' }}>
+                <Outlet />
+            </div>
             <Footer />
         </>
     );
