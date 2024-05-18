@@ -57,7 +57,7 @@ export const asyncGetProductsCategoriesThunk: any = createAsyncThunk(
 );
 
 export const asyncGetProducByIdThunk: any = createAsyncThunk(
-  'products/getCategories',
+  'products/getProductById',
   async (id: string) => {
     const response = await getProductById(id);
     return response;

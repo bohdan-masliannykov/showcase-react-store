@@ -49,7 +49,7 @@ export const productsSlice = createSlice({
       })
       .addCase(asyncGetProductsCategoriesThunk.fulfilled, (state, action) => {
         state.categories = {
-          data: action.payload,
+          data: ['all', ...action.payload],
           loading: false,
           error: null,
         };
