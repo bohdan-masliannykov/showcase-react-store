@@ -50,10 +50,10 @@ export const productsSlice = createSlice({
     setPreviewError: (state, action: PayloadAction<Error | null>) => {
       state.preview.error = action.payload;
     },
-    
+
     setCategories: (state, action: PayloadAction<string[]>) => {
       state.categories = {
-        data: action.payload,
+        data: ['all', ...action.payload],
         loading: false,
         error: null,
       };
