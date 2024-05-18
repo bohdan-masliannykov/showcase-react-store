@@ -5,6 +5,7 @@ import {
   asyncGetProductsCategoriesThunk,
   asyncGetProductsThunk,
 } from '../actions/products.actions';
+import { DefaltCategory } from '@/shared/enums/default-category.enum';
 
 const initialState: ProductsState = {
   products: {
@@ -56,7 +57,7 @@ export const productsSlice = createSlice({
       })
       .addCase(asyncGetProductsCategoriesThunk.fulfilled, (state, action) => {
         state.categories = {
-          data: ['all', ...action.payload],
+          data: [DefaltCategory.All, ...action.payload],
           loading: false,
           error: null,
         };

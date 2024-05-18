@@ -1,3 +1,4 @@
+import { DefaltCategory } from '@/shared/enums/default-category.enum';
 import { ProductsState } from '@/shared/types/products-state.type';
 import { RootState } from '@/store';
 import {
@@ -31,15 +32,20 @@ export const useProductListHook = () => {
   }, []);
 
   useEffect(() => {
-    if (categories?.length) {
-      const findCategory = categories.findIndex((c: string) => c === category);
-      if (findCategory === -1) {
-        onSelectCategory('all');
-        return;
+    const getProductsByCategoryParamChange = () => {
+      if (categories?.length) {
+        const findCategory = categories.findIndex(
+          (c: string) => c === category
+        );
+        if (findCategory === -1) {
+          onSelectCategory(DefaltCategory.All);
+          return;
+        }
+        dispatch(asyncGetProductsThunk(category));
       }
-      console.log('here');
-      dispatch(asyncGetProductsThunk(category));
-    }
+    };
+
+    getProductsByCategoryParamChange();
   }, [category, categories]);
 
   const onSelectCategory = (category: string) => {

@@ -1,6 +1,7 @@
 import { Product } from '@/shared/types/product.type';
 import { fetchData } from '@/lib/fetch.api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { DefaltCategory } from '@/shared/enums/default-category.enum';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -34,7 +35,7 @@ let abortController: AbortController | null = null;
 export const asyncGetProductsThunk: any = createAsyncThunk(
   'products/getProducts',
   async (category?: string) => {
-    category = category === 'all' ? undefined : category; //ignore 'all' category
+    category = category === DefaltCategory.All ? undefined : category; //ignore 'all' category
     abortController?.abort();
 
     abortController = new AbortController();

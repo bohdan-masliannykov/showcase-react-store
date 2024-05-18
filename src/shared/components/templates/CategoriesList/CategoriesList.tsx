@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "../../ui/tabs"
+import { DefaltCategory } from "@/shared/enums/default-category.enum";
 
 type CategoriesListProps = {
     list: string[];
@@ -8,7 +9,7 @@ type CategoriesListProps = {
 }
 
 export const CategoriesList: React.FC<CategoriesListProps> = ({ list, onSelectCategory, selectedCategory }) => {
-    const [_selectedCategory, setSelectedCategory] = useState<string>(selectedCategory || 'all')
+    const [_selectedCategory, setSelectedCategory] = useState<string>(selectedCategory || DefaltCategory.All)
 
     const _onSelectCategory = (category: string) => {
         if (_selectedCategory === category) return; //prevent re-fetching the same category
