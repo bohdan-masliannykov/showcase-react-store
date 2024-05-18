@@ -27,7 +27,7 @@ describe('formatCurrency', () => {
   });
 
   it('should return empty string for invalid value', () => {
-    const result = formatCurrency(null);
+    const result = formatCurrency(null as any);
     expect(result).toEqual('');
   });
 });

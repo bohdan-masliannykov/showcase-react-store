@@ -10,4 +10,5 @@ export type Product = {
   image: string;
   rating: Rating;
   title: string;
+  price: number;
 };

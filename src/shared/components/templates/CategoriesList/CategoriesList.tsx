@@ -3,8 +3,8 @@ import { Tabs, TabsList, TabsTrigger } from "../../ui/tabs"
 
 type CategoriesListProps = {
     list: string[];
-    selectedCategory?: string;
-    onSelectCategory?: (category: string) => void;
+    selectedCategory: string;
+    onSelectCategory: (category: string) => void;
 }
 
 export const CategoriesList: React.FC<CategoriesListProps> = ({ list, onSelectCategory, selectedCategory }) => {

@@ -1,5 +1,7 @@
-export async function fetchData<T>(url: string, signal?: any): Promise<T> {
-  console.log(signal);
+export async function fetchData<T>(
+  url: string,
+  signal?: AbortSignal
+): Promise<T> {
   // await new Promise((resolve) => setTimeout(resolve, 2000)); //simulate slow network
 
   const response = await fetch(url, { method: 'get', signal });
