@@ -31,10 +31,10 @@ const ProductCard: ProductCardType = ({ product }) => {
             </div>
 
             <div className="flex justify-between mt-2 p-5">
-                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                     {formatCurrency(product!.price)}
                 </div>
-                <span class="capitalize inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
+                <span className="capitalize inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
                     {product!.category}
                 </span>
             </div>
