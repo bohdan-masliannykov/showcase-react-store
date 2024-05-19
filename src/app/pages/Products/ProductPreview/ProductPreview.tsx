@@ -1,4 +1,5 @@
 
+import { BackButton } from '@/shared/components/atoms/BackButton/BackButton';
 import { ProductMock } from '@/shared/components/templates/ProductMock/ProductMock';
 import { ProductView } from '@/shared/components/templates/ProductView/ProductView';
 import { ProductsState } from '@/shared/types/products-state.type';
@@ -26,7 +27,10 @@ const ProductPreview: React.FC = () => {
 
     return (
         <div className="product-preview">
-            <div className="container py-12">
+            <div className="container py-4">
+                <BackButton />
+            </div>
+            <div className="container pb-8 pt-4">
                 {!loading && product ? <ProductView product={product!} /> : <ProductMock />}
             </div>
         </div>

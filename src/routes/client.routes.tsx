@@ -1,4 +1,5 @@
 import { ErrorPage } from '@/app/error-page';
+import { CartPage } from '@/app/pages/Cart/CartPage';
 import { ContactPage } from '@/app/pages/ContactPage/ContactPage';
 import { HomePage } from '@/app/pages/HomePage/HomePage';
 import ProductPreview from '@/app/pages/Products/ProductPreview/ProductPreview';
@@ -15,6 +16,7 @@ export const clientRoutes: RouteObject[] = [
       { path: '/products', element: <ProductsList /> },
       { path: '/products/:id', element: <ProductPreview /> },
       { path: '/contact', element: <ContactPage /> },
+      { path: '/cart', element: <CartPage /> },
     ],
     errorElement: <ErrorPage />,
   },
