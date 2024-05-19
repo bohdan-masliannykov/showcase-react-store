@@ -7,11 +7,15 @@ interface CartState {
   total: number;
 }
 
+const cart = localStorage.getItem('cart');
+
 // TODO cart id for auhenticated user to save cart
-const initialState: CartState = {
-  items: [],
-  total: 0,
-};
+const initialState: CartState = cart
+  ? JSON.parse(cart)
+  : {
+      items: [],
+      total: 0,
+    };
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -28,6 +32,8 @@ const cartSlice = createSlice({
       }
 
       state.total += newItem.price * newItem.quantity!;
+
+      localStorage.setItem('cart', JSON.stringify(state));
     },
     removeItem: (state, action: PayloadAction<number>) => {
       const itemId = action.payload;
@@ -37,6 +43,7 @@ const cartSlice = createSlice({
         state.total -= itemToRemove.price * itemToRemove.quantity!;
         state.items = state.items.filter((item) => item.id !== itemId!);
       }
+      localStorage.setItem('cart', JSON.stringify(state));
     },
     updateQuantity: (
       state,
@@ -50,10 +57,12 @@ const cartSlice = createSlice({
         itemToUpdate.quantity = quantity;
         state.total += itemToUpdate.price * itemToUpdate.quantity!; // new total
       }
+      localStorage.setItem('cart', JSON.stringify(state));
     },
     clearCart: (state) => {
       state.items = [];
       state.total = 0;
+      localStorage.removeItem('cart');
     },
   },
 });
