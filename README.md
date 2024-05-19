@@ -10,6 +10,11 @@ This project is an ongoing development of a shop application that incorporates c
 
 ## Usage
 
+### Testing
+
+1. Start the testing server: `npm run test` or run `npm run test:coverage` to see coverage by tests
+2. Test results will appear at console
+
 ### Development
 
 1. Start the development server: `npm run dev`
