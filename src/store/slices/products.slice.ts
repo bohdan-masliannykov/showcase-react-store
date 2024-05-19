@@ -7,7 +7,7 @@ import {
 } from '../actions/products.actions';
 import { DefaltCategory } from '@/shared/enums/default-category.enum';
 
-const initialState: ProductsState = {
+export const initialState: ProductsState = {
   products: {
     data: [],
     loading: false,

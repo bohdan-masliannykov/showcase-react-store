@@ -11,19 +11,19 @@ const Header: React.FC = () => {
                 <nav>
                     <ul className="flex space-x-4">
                         <li>
-                            <Link to={'/'} className="hover:text-gray-300">Home</Link>
+                            {/* <Link to={'/'} className="hover:text-gray-300">Home</Link> */}
                         </li>
                         <li>
                             <Link to={'/products'} className="hover:text-gray-300">Products</Link>
                         </li>
                         <li>
-                            <Link to={'/about'} className="hover:text-gray-300">About</Link>
+                            {/* <Link to={'/about'} className="hover:text-gray-300">About</Link> */}
                         </li>
                     </ul>
                 </nav>
                 <div className='header__settings flex'>
-                    <div className="cart">Cart</div>
-                    <div className="settings">Settings</div>
+                    {/* <div className="cart">Cart</div>
+                    <div className="settings">Settings</div> */}
                 </div>
             </div>
         </header>

@@ -30,4 +30,9 @@ describe('formatCurrency', () => {
     const result = formatCurrency(null as any);
     expect(result).toEqual('');
   });
+
+  it('should return empty string for unexpected currency', () => {
+    const result = formatCurrency(500, 'XYZ');
+    expect(result).toBe('XYZ\u00a0500.00');
+  });
 });

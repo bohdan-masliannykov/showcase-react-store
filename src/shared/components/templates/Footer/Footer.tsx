@@ -1,7 +1,7 @@
 const Footer: React.FC = () => {
     return (
-        <footer className="flex py-12 bg-slate-50 text-indigo border-t-2 border-indigo-500">
-            <div className="container flex">
+        <footer className=" py-12 bg-slate-50 text-indigo border-t-2 border-indigo-500">
+            <div className="container grid grid-cols-3">
                 <div>
                     <h3>Links</h3>
                     <ul>

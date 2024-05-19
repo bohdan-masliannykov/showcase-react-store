@@ -1,32 +1,6 @@
-import { Product } from '@/shared/types/product.type';
-import { fetchData } from '@/lib/fetch.api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { DefaltCategory } from '@/shared/enums/default-category.enum';
-
-const API_URL = import.meta.env.VITE_API_URL;
-
-// #region Products API
-const getProducts = async (signal?: AbortSignal): Promise<Product[]> => {
-  return fetchData<Product[]>(`${API_URL}/products`, signal);
-};
-
-const getProductById = async (id: string): Promise<Product> => {
-  return fetchData<Product>(`${API_URL}/products/${id}`);
-};
-
-const getProductsCategories = async (): Promise<string[]> => {
-  return fetchData<string[]>(`${API_URL}/products/categories`);
-};
-
-const getProductsByCategory = async (
-  category: string,
-  signal?: AbortSignal
-): Promise<Product[]> => {
-  return fetchData<Product[]>(
-    `${API_URL}/products/category/${category}`,
-    signal
-  );
-};
+import { ProductsAPI } from '@/lib/api/products/products.api';
 
 // #endregion
 
@@ -42,8 +16,8 @@ export const asyncGetProductsThunk: any = createAsyncThunk(
     const signal = abortController.signal;
 
     const response = category
-      ? await getProductsByCategory(category, signal)
-      : await getProducts(signal);
+      ? await ProductsAPI.getProductsByCategory(category, signal)
+      : await ProductsAPI.getProducts(signal);
 
     return response;
   }
@@ -52,7 +26,7 @@ export const asyncGetProductsThunk: any = createAsyncThunk(
 export const asyncGetProductsCategoriesThunk: any = createAsyncThunk(
   'products/getCategories',
   async () => {
-    const response = await getProductsCategories();
+    const response = await ProductsAPI.getProductsCategories();
     return response;
   }
 );
@@ -60,7 +34,7 @@ export const asyncGetProductsCategoriesThunk: any = createAsyncThunk(
 export const asyncGetProducByIdThunk: any = createAsyncThunk(
   'products/getProductById',
   async (id: string) => {
-    const response = await getProductById(id);
+    const response = await ProductsAPI.getProductById(id);
     return response;
   }
 );
