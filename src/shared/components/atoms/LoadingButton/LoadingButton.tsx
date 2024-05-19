@@ -3,7 +3,6 @@ type LoadingButtonProps = {
     children: React.ReactNode;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-
 export const LoadingButton: React.FC<LoadingButtonProps> = ({ loading, children, ...rest }) => {
     return (
         <button type="button" className="py-2.5 px-5 mr-2 text-sm font-medium text-gray-900  bg-indigo-600 rounded border hover:bg-indigo-500 text-white dark:hover:bg-gray-700 inline-flex items-center" {...rest}>

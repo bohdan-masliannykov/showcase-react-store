@@ -45,7 +45,15 @@ export const productsSlice = createSlice({
         state.products = { data: [], loading: false, error: action.error };
       })
       .addCase(asyncGetProductsThunk.fulfilled, (state, action) => {
-        state.products = { data: action.payload, loading: false, error: null };
+        //mock quantity to 100
+        state.products = {
+          data: action.payload.map((product) => ({
+            ...product,
+            quantity: 100,
+          })),
+          loading: false,
+          error: null,
+        };
       });
 
     builder
@@ -72,7 +80,10 @@ export const productsSlice = createSlice({
       })
       .addCase(asyncGetProducByIdThunk.fulfilled, (state, action) => {
         state.preview = {
-          data: action.payload,
+          data: {
+            ...action.payload,
+            quantity: 100,
+          },
           loading: false,
           error: null,
         };
