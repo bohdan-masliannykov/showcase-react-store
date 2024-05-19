@@ -1,11 +1,13 @@
 import { Product } from '@/shared/types/product.type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export const DELIVERY_CHARGE = 15;
 interface CartState {
   items: Product[];
   total: number;
 }
 
+// TODO cart id for auhenticated user to save cart
 const initialState: CartState = {
   items: [],
   total: 0,
@@ -16,37 +18,37 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action: PayloadAction<Product>) => {
-      const newItem = action.payload;
+      const newItem = action.payload!;
       const existingItem = state.items.find((item) => item.id === newItem.id);
 
       if (existingItem) {
-        existingItem.quantity += newItem.quantity;
+        existingItem.quantity! += newItem.quantity!;
       } else {
         state.items.push(newItem);
       }
 
-      state.total += newItem.price * newItem.quantity;
+      state.total += newItem.price * newItem.quantity!;
     },
-    removeItem: (state, action: PayloadAction<string>) => {
+    removeItem: (state, action: PayloadAction<number>) => {
       const itemId = action.payload;
       const itemToRemove = state.items.find((item) => item.id === itemId);
 
       if (itemToRemove) {
-        state.total -= itemToRemove.price * itemToRemove.quantity;
-        state.items = state.items.filter((item) => item.id !== itemId);
+        state.total -= itemToRemove.price * itemToRemove.quantity!;
+        state.items = state.items.filter((item) => item.id !== itemId!);
       }
     },
     updateQuantity: (
       state,
-      action: PayloadAction<{ itemId: string; quantity: number }>
+      action: PayloadAction<{ itemId: number; quantity: number }>
     ) => {
       const { itemId, quantity } = action.payload;
-      const itemToUpdate = state.items.find((item) => item.id === itemId);
+      const itemToUpdate = state.items.find((item) => item.id === itemId!);
 
       if (itemToUpdate) {
-        state.total -= itemToUpdate.price * itemToUpdate.quantity;
+        state.total -= itemToUpdate.price * itemToUpdate.quantity!; // previous total
         itemToUpdate.quantity = quantity;
-        state.total += itemToUpdate.price * itemToUpdate.quantity;
+        state.total += itemToUpdate.price * itemToUpdate.quantity!; // new total
       }
     },
     clearCart: (state) => {
@@ -60,3 +62,4 @@ export const { addItem, removeItem, updateQuantity, clearCart } =
   cartSlice.actions;
 
 export default cartSlice.reducer;
+export const cartActions = cartSlice.actions;

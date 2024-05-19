@@ -1,4 +1,4 @@
-import { ProductsState } from '@/shared/types/products-state.type';
+import { ProductsState } from '@/shared/types/app-state.type';
 import { createSlice } from '@reduxjs/toolkit';
 import {
   asyncGetProducByIdThunk,
@@ -45,12 +45,8 @@ export const productsSlice = createSlice({
         state.products = { data: [], loading: false, error: action.error };
       })
       .addCase(asyncGetProductsThunk.fulfilled, (state, action) => {
-        //mock quantity to 100
         state.products = {
-          data: action.payload.map((product) => ({
-            ...product,
-            quantity: 100,
-          })),
+          data: action.payload,
           loading: false,
           error: null,
         };
@@ -82,7 +78,6 @@ export const productsSlice = createSlice({
         state.preview = {
           data: {
             ...action.payload,
-            quantity: 100,
           },
           loading: false,
           error: null,

@@ -1,5 +1,5 @@
 import { DefaltCategory } from '@/shared/enums/default-category.enum';
-import { ProductsState } from '@/shared/types/products-state.type';
+import { ProductsState } from '@/shared/types/app-state.type';
 import { RootState } from '@/store';
 import {
   asyncGetProductsCategoriesThunk,

@@ -69,7 +69,7 @@ describe('Products Slice', () => {
         asyncGetProductsThunk.fulfilled([{ id: '1', name: 'Hat', price: 2.99 }])
       );
       expect(state.products).toEqual({
-        data: [{ id: '1', name: 'Hat', price: 2.99, quantity: 100 }],
+        data: [{ id: '1', name: 'Hat', price: 2.99 }],
         loading: false,
         error: null,
       });
@@ -89,8 +89,7 @@ describe('Products Slice', () => {
             id: '1',
             name: 'Hat',
             price: 2.99,
-            category: 'jewelery',
-            quantity: 100,
+            category: 'jewelery'
           },
         ],
         loading: false,
@@ -170,7 +169,6 @@ describe('Products Slice', () => {
           name: 'Hat',
           price: 2.99,
           category: 'jewelery',
-          quantity: 100,
         },
         loading: false,
         error: null,

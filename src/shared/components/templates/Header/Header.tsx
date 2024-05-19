@@ -1,8 +1,18 @@
 import React from 'react';
 import { Link, NavLink } from "react-router-dom";
 import Logo from '@/shared/assets/images/logo.svg';
+import { CartIcon } from '../../atoms/CartIcon/CartIcon';
+import { useSelector } from 'react-redux';
+import { Product } from '@/shared/types/product.type';
+import { RootState } from '@/store';
+import { CartState } from '@/shared/types/app-state.type';
 
 const Header: React.FC = () => {
+    const state: CartState = useSelector(
+        (state: RootState) => state.cart
+    );
+    const count = state.items.reduce((acc: number, item: Product) => acc + item.quantity!, 0);
+
     return (
         <nav className="bg-white dark:bg-gray-900 w-full  border-b border-gray-200 dark:border-gray-600">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
@@ -10,14 +20,9 @@ const Header: React.FC = () => {
                     <img style={{ width: '100px' }} src={Logo} alt="Shop Logo" />
                 </Link>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-
                     <div className="flex justify-center items-center">
                         <Link to={'/cart'}>
-                            <div className="relative">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="file: mt-4 h-6 w-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                                </svg>
-                            </div>
+                            <CartIcon count={count} />
                         </Link>
                     </div>
                     <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">

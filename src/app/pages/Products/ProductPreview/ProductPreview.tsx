@@ -2,7 +2,7 @@
 import { BackButton } from '@/shared/components/atoms/BackButton/BackButton';
 import { ProductMock } from '@/shared/components/templates/ProductMock/ProductMock';
 import { ProductView } from '@/shared/components/templates/ProductView/ProductView';
-import { ProductsState } from '@/shared/types/products-state.type';
+import { ProductsState } from '@/shared/types/app-state.type';
 import { RootState } from '@/store';
 import { asyncGetProducByIdThunk } from '@/store/actions/products.actions';
 import { productsActions } from '@/store/slices/products.slice';
