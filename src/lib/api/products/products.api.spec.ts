@@ -78,22 +78,17 @@ describe('Products API', () => {
   });
 
   it('should return categories error', async () => {
-    const mockResponse: any = {
-      ok: false,
-      json: async () => {
-        message: 'Unexpected error from server!';
-      },
-    };
-    const mockFetch = vi.spyOn(global, 'fetch').mockResolvedValue(mockResponse);
+    const mockFetch = vi.spyOn(global, 'fetch').mockRejectedValue({
+      message: 'Unexpected error from server!',
+    });
     let result: any;
     try {
       result = await ProductsAPI.getProductsCategories();
     } catch (error) {
       result = error;
     }
-    expect(result.message).toEqual(
-      'Failed to fetch from URL: https://fakestoreapi.com/products/categories'
-    );
+
+    expect(result.message).toEqual('Unexpected error from server!');
     expect(mockFetch).toHaveBeenCalledWith(`${BASE_API_URL}/categories`, {
       method: 'get',
       signal: undefined,
