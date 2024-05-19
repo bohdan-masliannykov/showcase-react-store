@@ -18,23 +18,23 @@ const ProductCard: ProductCardType = ({ product }) => {
             <div>
                 <div className='bg-indigo-50'>
                     <Link to={`/products/${product!.id}`}>
-                        <img className={`${styles.product__image} rounded-t-lg`} src={product!.image} alt={product!.title} />
+                        <img data-testid="product-image" className={`${styles.product__image} rounded-t-lg`} src={product!.image} alt={product!.title} />
                     </Link>
                 </div>
                 <div className="p-5 pb-0">
                     <Link to={`/products/${product!.id}`}>
-                        <h5 className={`${styles.product__title} mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white`}>{product!.title}</h5>
+                        <h5 data-testid="product-title" className={`${styles.product__title} mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white`}>{product!.title}</h5>
                     </Link>
-                    <p className={`${styles.product__description} mb-3 font-normal text-gray-700 dark:text-gray-400`}>{product!.description}</p>
+                    <p data-testid="product-description" className={`${styles.product__description} mb-3 font-normal text-gray-700 dark:text-gray-400`}>{product!.description}</p>
 
                 </div>
             </div>
 
             <div className="flex justify-between mt-2 p-5">
-                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                <div data-testid="product-price" className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                     {formatCurrency(product!.price)}
                 </div>
-                <span className="capitalize inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
+                <span data-testid="product-category" className="capitalize inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
                     {product!.category}
                 </span>
             </div>
