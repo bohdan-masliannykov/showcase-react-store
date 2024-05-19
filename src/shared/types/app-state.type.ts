@@ -10,4 +10,5 @@ export type ProductsState = {
 export type CartState = {
   items: Product[];
   total: number;
+  timestamp: number | null;
 };

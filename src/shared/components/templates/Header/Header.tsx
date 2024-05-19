@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { Product } from '@/shared/types/product.type';
 import { RootState } from '@/store';
 import { CartState } from '@/shared/types/app-state.type';
+import { CartTimer } from '../CartTimer/CartTimer';
 
 const Header: React.FC = () => {
     const state: CartState = useSelector(
@@ -21,6 +22,7 @@ const Header: React.FC = () => {
                 </Link>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <div className="flex justify-center items-center">
+                        <CartTimer />
                         <Link to={'/cart'}>
                             <CartIcon count={count} />
                         </Link>
@@ -44,7 +46,6 @@ const Header: React.FC = () => {
                 </div>
             </div>
         </nav>
-
     );
 }
 

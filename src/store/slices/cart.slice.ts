@@ -2,9 +2,12 @@ import { Product } from '@/shared/types/product.type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const DELIVERY_CHARGE = 15;
+export const CART_DURATION = 5; //minutes
+
 interface CartState {
   items: Product[];
   total: number;
+  timestamp: number | null;
 }
 
 const cart = localStorage.getItem('cart');
@@ -15,6 +18,7 @@ const initialState: CartState = cart
   : {
       items: [],
       total: 0,
+      timestamp: null,
     };
 
 const cartSlice = createSlice({
@@ -32,7 +36,7 @@ const cartSlice = createSlice({
       }
 
       state.total += newItem.price * newItem.quantity!;
-
+      state.timestamp = Date.now();
       localStorage.setItem('cart', JSON.stringify(state));
     },
     removeItem: (state, action: PayloadAction<number>) => {
@@ -43,6 +47,8 @@ const cartSlice = createSlice({
         state.total -= itemToRemove.price * itemToRemove.quantity!;
         state.items = state.items.filter((item) => item.id !== itemId!);
       }
+
+      state.timestamp = state.items.length === 0 ? 0 : Date.now();
       localStorage.setItem('cart', JSON.stringify(state));
     },
     updateQuantity: (
@@ -57,11 +63,14 @@ const cartSlice = createSlice({
         itemToUpdate.quantity = quantity;
         state.total += itemToUpdate.price * itemToUpdate.quantity!; // new total
       }
+
+      state.timestamp = Date.now();
       localStorage.setItem('cart', JSON.stringify(state));
     },
     clearCart: (state) => {
       state.items = [];
       state.total = 0;
+      state.timestamp = null;
       localStorage.removeItem('cart');
     },
   },
